@@ -90,6 +90,16 @@ export default class TracksList extends Component {
         this.onDown(firstSelectedTrackIdx, tracks);
         break;
 
+      case 37: // left
+        e.preventDefault();
+        this.onLeft();
+        break;
+
+      case 39: // right
+        e.preventDefault();
+        this.onRight();
+        break;
+
       case 13: // enter
         e.preventDefault();
         this.onEnter(firstSelectedTrackIdx, tracks);
@@ -121,6 +131,14 @@ export default class TracksList extends Component {
         }
       });
     }
+  }
+
+  onLeft() {
+    AppActions.player.jumpTo(Player.getCurrentTime() - 5);
+  }
+ 
+  onRight() {
+    AppActions.player.jumpTo(Player.getCurrentTime() + 5);
   }
 
   onEnter(i, tracks) {
